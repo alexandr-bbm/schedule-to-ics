@@ -1,6 +1,8 @@
 /*
  * Функция - загрузчик и обработчик DOM с сайта расписания ТПУ
- * 
+ *
+ * @param String url Адрес страницы для парсинга
+ * @returns Array classes Массив объектов-пар в виде для makeIcs
  *
  */
 export default function getTpuSchedule (url) {
