@@ -32,7 +32,7 @@ export default function makeIcs (classes, classDuration = 95 ,isTwoWeeks = true)
     var startMonday = new Date(nextMonday);
     var weekInterval;
     isTwoWeeks ? weekInterval = 2 : 1;
-    if (isTwoWeeks && !DATE.isWeekOdd(nextMonday)) {
+    if (isTwoWeeks && !DATE.isWeekOdd(nextMonday)) { // todo не работает нихера
         startMonday.setDate(nextMonday.getDate() - 7); // соблюдаем порядок четной/нечетной недель
     }
     classes.forEach((classItem) => { // для каждой пары

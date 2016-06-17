@@ -2,7 +2,7 @@ import getTpuSchedule from './get-tpu-schedule.es6';
 
 export default function router (university, url) {
     switch (university) {
-        case 'tpu':
+        case 'ТПУ':
             return getTpuSchedule(url);
             break;
 

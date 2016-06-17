@@ -4,3 +4,29 @@
 .mdl-color--primary-dark {
     background-color: #378D3B !important;
 }
+
+.demo-list-radio {
+    display: inline;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mdl-list__item_disabled {
+    color: #CCCCCC
+}
+
+.guide-img {
+    margin-bottom: 20px;
+}
+
+.author-link {
+    text-decoration: none;
+    float: right;
+    color: #5b6ac0;
+}
+
+.mdl-menu__item[disabled] {
+    pointer-events: none;
+}

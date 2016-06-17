@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Импорт расписания в календарь</title>
+    <title>Импорт расписания</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -25,116 +25,148 @@
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
     <!--
-    <link rel="canonical" href="http://www.example.com/">
-    -->
+      <link rel="canonical" href="http://www.example.com/">
+      -->
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_purple-pink.min.css">
     <link rel="stylesheet" href="build/main.css">
     <style>
-    #view-source {
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 40px;
-      margin-bottom: 40px;
-      z-index: 900;
-    }
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
     </style>
-  </head>
-  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+</head>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-          <h3>Импорт расписания в Google Календарь</h3>
+            <h3>Импорт расписания в Google Календарь</h3>
+            <a style="margin-left: auto;" href="https://github.com/alexandr-bbm/schedule-to-ics"><img src="./images/GitHub-Mark-32px.png"></a>
         </div>
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-          <a href="#download" class="mdl-layout__tab is-active">Получить расписание</a>
-          <a href="#overview" class="mdl-layout__tab">О сервисе</a>
-          <a href="#contirbute" class="mdl-layout__tab">Внести вклад</a>
+            <a href="#download" class="mdl-layout__tab is-active">Получить расписание</a>
+            <a href="#how-to-import" class="mdl-layout__tab">Как импортировать?</a>
+            <a href="#overview" class="mdl-layout__tab">О сервисе</a>
+            <!--<a href="#contirbute" class="mdl-layout__tab">Внести вклад</a>-->
         </div>
-      </header>
+    </header>
 
 
-      <main class="mdl-layout__content">
+    <main class="mdl-layout__content">
         <div class="mdl-layout__tab-panel is-active" id="download">
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <form action="#" class="get-ics-form">
-              <div class="mdl-card__supporting-text">
-                <h4>Скачать .ics файл с расписанием</h4>
-                  <div>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="tpu" style="margin-right: 50px;">
-                      <input checked class="mdl-radio__button" id="tpu" name="university" type="radio"
-                             value="tpu">
-                      <span class="mdl-radio__label">ТПУ</span>
-                    </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="tsu">
-                      <input class="mdl-radio__button" id="tsu" name="university" type="radio" value="tsu" disabled>
-                      <span class="mdl-radio__label">ТГУ</span>
-                    </label>
-                  </div>
-                  <div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                      <input class="mdl-textfield__input" type="text" id="sample3" name="url">
-                      <label class="mdl-textfield__label" for="sample3">URL расписания</label>
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <div class="mdl-card mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text">
+                        <div>
+                            <h4>Скачать файл с расписанием</h4>
+                        </div>
+                        <div class="mdl-grid">
+                            <div class="mdl-layout-spacer"></div>
+                            <form action="#" class="get-ics-form mdl-cell--6-col">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                                    <input class="mdl-textfield__input" value="ТПУ" type="text" id="country" name="university" readonly tabIndex="-1" />
+                                    <label class="mdl-textfield__label" for="country">Выберите расписание</label>
+                                    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="country">
+                                        <li class="mdl-menu__item">ТПУ</li>
+                                        <li class="mdl-menu__item" disabled>ТГУ (В разработке)</li>
+                                    </ul>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="sample3" name="url">
+                                    <label class="mdl-textfield__label" for="sample3">Введите URL расписания</label>
+                                </div>
+                                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect j-download-btn">Скачать</button>
+                            </form>
+                            <div class="mdl-layout-spacer"></div>
+                        </div>
                     </div>
-                  </div>
-                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Скачать расписание</button>
-
-              </div>
-              </form>
-            </div>
-          </section>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a href="mailto:alexandr.bbm@gmail.com" class="author-link">Вопросы?</a>
+                    </div>
+                </div>
+            </section>
         </div>
         <div class="mdl-layout__tab-panel" id="overview">
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-              <i class="material-icons">play_circle_filled</i>
-            </header>
-            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-card__supporting-text">
-                <h4>Для чего предназначен этот сервис?</h4>
-                Для автоматической загрузки файла с расписанием ВУЗа, который легко импортировать в Google Календарь.
-              </div>
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
-              <li class="mdl-menu__item">ВК</li>
-              <li class="mdl-menu__item">Twit</li>
-            </ul>
-          </section>
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <div class="mdl-card mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                        <h4 class="mdl-cell mdl-cell--12-col">Для чего предназначен сервис?</h4>
+                        <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone text-center">
+                            <img src="./images/google-calendar-logo.png" class="section__circle-container__circle" />
+                        </div>
+                        <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                            <h4>Для эффективного тайм-менеджмента мы стремимся объединить все задачи в одном месте.</h4>
+                        </div>
+                        <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone text-center">
+                            <img src="./images/tpu-logo.jpg" class="section__circle-container__circle" />
+                        </div>
+                        <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                            <h4>Добавлять расписание в Google Календарь вручную неудобно и долго.</h4>
+                        </div>
+                        <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone text-center">
+                            <img src="./images/done-image.png" class="section__circle-container__circle" />
+                        </div>
+                        <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                            <h4>Загрузите файл, для автоматического импорта расписания в ваш Google Календарь</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="mdl-layout__tab-panel" id="how-to-import">
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <div class="mdl-card mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                        <h4 class="mdl-cell mdl-cell--12-col">Как импортировать скачанный файл в Google Календарь?</h4>
+                        <h4>1. Создайте отдельный календарь</h4>
+                        <img class="guide-img" src="./images/guide/1.jpg" alt="">
+                        <img class="guide-img" src="./images/guide/2.jpg" alt="">
+                        <h4>2. Кликните "Другие календари" -> "Импортировать календарь"</h4>
+                        <img class="guide-img" src="./images/guide/3.jpg" alt="">
+                        <h4>3. В появившемся окне загрузите скачанный файл расписания и выберете календарь, который был создан на шаге 1.</h4>
+                        <img class="guide-img" src="./images/guide/4.jpg" alt="">
+                        <h4>4. Нажмите кнопку "Импортировать"</h4>
+                        <img class="guide-img" src="./images/guide/5.jpg" alt="">
+                    </div>
+                </div>
+            </section>
         </div>
         <div class="mdl-layout__tab-panel" id="contirbute">
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-              <i class="material-icons">play_circle_filled</i>
-            </header>
-            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-card__supporting-text">
-                <h4>Добавить расписание для своего ВУЗа</h4>
-                Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur elit cillum esse.
-              </div>
-              <div class="mdl-card__actions">
-                <a href="#" class="mdl-button ics-download-btn">Скачать расписание</a>
-              </div>
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
-              <li class="mdl-menu__item">Lorem</li>
-              <li class="mdl-menu__item" disabled>Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <header
+                    class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+                    <i class="material-icons">play_circle_filled</i>
+                </header>
+                <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <div class="mdl-card__supporting-text">
+                        <h4>Добавить расписание для своего ВУЗа</h4>
+                        Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur elit cillum esse.
+                    </div>
+                    <div class="mdl-card__actions">
+                        <a href="#" class="mdl-button ics-download-btn">Скачать расписание</a>
+                    </div>
+                </div>
+                <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
+                    <li class="mdl-menu__item">Lorem</li>
+                    <li class="mdl-menu__item" disabled>Ipsum</li>
+                    <li class="mdl-menu__item">Dolor</li>
+                </ul>
+            </section>
         </div>
-      </main>
-    </div>
-    <script src="build/main.min.js" charset="UTF-8"></script>
-  </body>
+    </main>
+</div>
+<div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<script src="build/main.min.js" charset="UTF-8"></script>
+</body>
 </html>
