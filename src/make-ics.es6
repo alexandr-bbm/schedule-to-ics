@@ -2,7 +2,9 @@ import {DATE} from './helper';
 /* 
     Функция makeIcs. 
 
-    @param Array classes [{}, ...]
+    @param Object data
+     data.classes
+     [{}, ...]
         Массив объектов с полями:
              subject
                 отображаемое название пары
@@ -18,10 +20,10 @@ import {DATE} from './helper';
                 время начала пары: строка формата чч:мм
              dayIdx:
                 индекс лня недели: 0 - Пн, 1 - Вт и т.д.
-             weekIdx (необязательное) todo
+             weekIdx (необязательное)
                 индекс четности недели: 0 - нечет, 1 - чет
-    @param Number data.classDuration Продолжительность пары в минутах.
-    @param Boolean data.isTwoWeeks Есть ли в расписании деление на четную/нечетную недели
+    data.classDuration Продолжительность пары в минутах.
+    data.isTwoWeeks Есть ли в расписании деление на четную/нечетную недели
 
     @returns Object calendar - объект календаря ics
 */
