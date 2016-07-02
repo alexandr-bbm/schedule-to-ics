@@ -20,22 +20,22 @@ import {DATE} from './helper';
                 индекс лня недели: 0 - Пн, 1 - Вт и т.д.
              weekIdx (необязательное) todo
                 индекс четности недели: 0 - нечет, 1 - чет
-    @param Number classDuration Продолжительность пары в минутах.
-    @param Boolean isTwoWeeks Есть ли в расписании деление на четную/нечетную недели
+    @param Number data.classDuration Продолжительность пары в минутах.
+    @param Boolean data.isTwoWeeks Есть ли в расписании деление на четную/нечетную недели
 
     @returns Object calendar - объект календаря ics
 */
 
-export default function makeIcs (classes, classDuration = 95 ,isTwoWeeks = true) {
+export default function makeIcs (data) {
     var calendar = ics();
     var nextMonday = DATE.getNextMonday(); // следующий понедельник
     var startMonday = new Date(nextMonday);
     var weekInterval;
-    isTwoWeeks ? weekInterval = 2 : 1;
-    if (isTwoWeeks && !DATE.isWeekOdd(nextMonday)) { // todo не работает нихера
+    weekInterval = data.isTwoWeeks ? 2 : 1;
+    if (data.isTwoWeeks && !DATE.isWeekOdd(nextMonday)) { // todo неправильно определяется номер недели
         startMonday.setDate(nextMonday.getDate() - 7); // соблюдаем порядок четной/нечетной недель
     }
-    classes.forEach((classItem) => { // для каждой пары
+    data.classes.forEach((classItem) => { // для каждой пары
         // название события
         let evtName = classItem.subject + ' ' + classItem.lessonType + ' ' + classItem.room;
         // Формируем дату начала пары относите льно понедельника
@@ -46,7 +46,7 @@ export default function makeIcs (classes, classDuration = 95 ,isTwoWeeks = true)
         evtStartDate.setMinutes(timeArr[1]);
         //------------------------------------------------------
         // Время окончания события.
-        var evtEndDate = new Date(evtStartDate.getTime() + classDuration*60000);
+        var evtEndDate = new Date(evtStartDate.getTime() + data.classDuration*60000);
         // Добавляем событие в календарь с периодичностью weekInterval
         calendar.addEvent(evtName, '', '', evtStartDate, evtEndDate, {
             freq: 'WEEKLY',

@@ -1,4 +1,5 @@
 import getTpuSchedule from './get-tpu-schedule.es6';
+import getTsuSchedule from './get-tsu-schedule.es6';
 
 export default function router (university, url) {
     switch (university) {
@@ -6,7 +7,8 @@ export default function router (university, url) {
             return getTpuSchedule(url);
             break;
 
-        case 'tsu':
+        case 'ТГУ':
+            return getTsuSchedule(url);
             break;
 
         default:

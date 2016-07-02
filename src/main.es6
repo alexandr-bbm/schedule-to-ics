@@ -38,35 +38,34 @@ class App {
                 this.loadBtnSpinner.start();
                 let form = getFormValues($(event.target));
                 router(form.university, form.url)
-                    .then((classes) => {
-                        if (0 === classes.length) {
+                    .then((data) => {
+                        if (0 === data.classes.length) {
                             throw new Error();
                         }
-                        var cal = makeIcs(classes);
+                        var cal = makeIcs(data);
 
                         this.loadBtnSpinner.stop();
-                        var data = {
+                        var infoData = {
                             message: 'Расписание успешно загружено.',
                             timeout: 2000,
                         };
-                        this.snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                        this.snackbarContainer.MaterialSnackbar.showSnackbar(infoData);
                         cal.download('rasp');
                     })
                     .catch((response) => {
                         console.log(response);
                         this.loadBtnSpinner.stop();
-                        var data = {
+                        var infoData = {
                             message: 'При загрузке произошла ошибка',
                             timeout: 2000,
                         };
-                        this.snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                        this.snackbarContainer.MaterialSnackbar.showSnackbar(infoData);
                     })
                 return false;
             });
     }
 
     bindDownloadBtnSpinner () {
-
     }
 }
 

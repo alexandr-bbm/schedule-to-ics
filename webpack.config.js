@@ -1,5 +1,5 @@
 'use strict';
-
+var ISDEV = process.env.NODE_ENV === 'development';
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
@@ -71,5 +71,6 @@ module.exports = {
     },
 
     // Create Sourcemaps for the bundle
-    devtool: 'source-map'
+    devtool: 'inline-source-map',
+    watch: ISDEV,
 };
