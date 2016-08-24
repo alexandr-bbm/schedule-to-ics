@@ -10998,7 +10998,11 @@ html, body {
 .author-link {
     text-decoration: none;
     float: right;
-    color: #5b6ac0;
+    color: #378D3B !important;
+}
+
+.author-link:hover {
+    color: #4BAE4F !important;
 }
 
 .mdl-menu__item[disabled] {

@@ -56,10 +56,6 @@ module.exports = {
         })
     ],
 
-    stats: {
-        // Colored output
-        colors: true
-    },
     resolve: {
         alias: {
             jquery: path.join(__dirname, 'node_modules/jquery/dist/jquery.js'),
