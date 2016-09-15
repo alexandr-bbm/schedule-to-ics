@@ -15,7 +15,7 @@ export const DATE = {
     isWeekOdd: (date) => {
         return currentWeekNumber(date) % 2
     }
-}
+};
 
 export function getFormValues($form) {
     let fieldObjects = $form.serializeArray();

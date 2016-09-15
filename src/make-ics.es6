@@ -31,12 +31,26 @@ import {DATE} from './helper';
 export default function makeIcs (data) {
     var calendar = ics();
     var nextMonday = DATE.getNextMonday(); // следующий понедельник
+
     var startMonday = new Date(nextMonday);
-    var weekInterval;
-    weekInterval = data.isTwoWeeks ? 2 : 1;
+    var $reverseWeek = $('#reverseWeek');
+
+    if ($reverseWeek.prop('checked')) {
+        startMonday.setDate(nextMonday.getDate() - 7)
+    }
     if (data.isTwoWeeks && !DATE.isWeekOdd(nextMonday)) { // todo неправильно определяется номер недели
         startMonday.setDate(nextMonday.getDate() - 7); // соблюдаем порядок четной/нечетной недель
+
+        if ($reverseWeek.prop('checked')) {
+            startMonday = new Date(nextMonday);
+        }
     }
+
+
+
+
+    var weekInterval = data.isTwoWeeks ? 2 : 1;
+
     data.classes.forEach((classItem) => { // для каждой пары
         // название события
         let evtName = classItem.subject + ' ' + classItem.lessonType + ' ' + classItem.room;
